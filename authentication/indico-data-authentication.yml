@@ -1,0 +1,30 @@
+generated: '2026-07-19'
+method: searched
+source: https://developer.indicodata.ai/docs/getting-started
+docs: https://developer.indicodata.ai/docs/getting-started
+summary:
+  types: [http-basic, http-bearer]
+  api_key_in: []
+  oauth2_flows: []
+  model: >-
+    Two-step token auth. Download an API token from the Account page of the
+    Intake / Agent Studio app. POST it via HTTP Basic Authentication to
+    /restapi/api/v1/auth/refreshToken to receive a short-lived JWT access_token
+    (expires after 15 minutes). Send that JWT as a Bearer token on all other REST
+    endpoints. Generating a new API token immediately expires all prior tokens.
+schemes:
+  - name: basicAuth
+    type: http
+    scheme: basic
+    used_for: /api/v1/auth/refreshToken (token exchange only)
+    sources: [openapi/indico-data-openapi.yml]
+  - name: bearerAuth
+    type: http
+    scheme: bearer
+    bearer_format: JWT
+    token_lifetime: 15 minutes
+    used_for: all data endpoints
+    sources: [openapi/indico-data-openapi.yml]
+notes:
+  - The GraphQL API (served at /graph/api/graphql) uses the same JWT bearer token.
+  - No OAuth2 authorization/scope surface is documented; there are no OAuth scopes.

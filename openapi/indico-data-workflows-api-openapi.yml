@@ -1,0 +1,131 @@
+openapi: 3.1.0
+info:
+  title: Indico REST Authentication Workflows API
+  description: REST API for the Indico intelligent document processing / intelligent process automation (IPA) platform. Submit documents to workflows, poll for submission status, retrieve extraction results, and manage review. Captured faithfully from the published Indico developer reference; request/response schemas are modeled from the documented parameters and responses. The platform is typically deployed per-customer on a dedicated cluster; the default hosted cluster host is app.indico.io and the REST API is served under the /restapi base path.
+  version: v1
+  x-apis-json-method: generated
+  x-apis-json-source: https://developer.indicodata.ai/reference
+  contact:
+    name: Indico Data Developer Support
+    url: https://developer.indicodata.ai/
+servers:
+- url: https://app.indico.io/restapi
+  description: Default hosted Indico cluster (override INDICO_HOST for a dedicated cluster)
+security:
+- bearerAuth: []
+tags:
+- name: Workflows
+  description: Document processing workflows
+paths:
+  /api/v1/workflows/{id}:
+    get:
+      operationId: get_workflow
+      tags:
+      - Workflows
+      summary: Get Workflow
+      description: Fetches a workflow with the given ID.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful Response
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /api/v1/workflows/{id}/submissions/:
+    post:
+      operationId: submit_to_workflow
+      tags:
+      - Workflows
+      summary: Submit To Workflow
+      description: Creates a submission for a given workflow. Provide one or multiple files. Use one of the /submissions endpoints to query for updates and results.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The workflow ID to receive the submission
+      - name: submission_results_version
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - LATEST
+          - OLDEST_SUPPORTED
+          - ONE
+          - TWO
+          - THREE
+          default: LATEST
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - files
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+      responses:
+        '200':
+          description: Successful Response - array of submission IDs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+        '422':
+          $ref: '#/components/responses/ValidationError'
+components:
+  responses:
+    ValidationError:
+      description: Validation Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
+  schemas:
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ValidationError:
+      type: object
+      properties:
+        loc:
+          type: array
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+        msg:
+          type: string
+        type:
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Short-lived JWT access token obtained from /api/v1/auth/refreshToken
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using your Indico API token, used only to obtain a JWT

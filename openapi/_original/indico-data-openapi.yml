@@ -1,0 +1,295 @@
+openapi: 3.1.0
+info:
+  title: Indico REST API
+  description: >-
+    REST API for the Indico intelligent document processing / intelligent
+    process automation (IPA) platform. Submit documents to workflows, poll for
+    submission status, retrieve extraction results, and manage review. Captured
+    faithfully from the published Indico developer reference; request/response
+    schemas are modeled from the documented parameters and responses. The
+    platform is typically deployed per-customer on a dedicated cluster; the
+    default hosted cluster host is app.indico.io and the REST API is served under
+    the /restapi base path.
+  version: v1
+  x-apis-json-method: generated
+  x-apis-json-source: https://developer.indicodata.ai/reference
+  contact:
+    name: Indico Data Developer Support
+    url: https://developer.indicodata.ai/
+servers:
+  - url: https://app.indico.io/restapi
+    description: Default hosted Indico cluster (override INDICO_HOST for a dedicated cluster)
+tags:
+  - name: Authentication
+    description: Exchange an API token for a short-lived JWT access token
+  - name: Datasets
+    description: Datasets that back workflows and models
+  - name: Workflows
+    description: Document processing workflows
+  - name: Submissions
+    description: Documents submitted to a workflow and their results
+  - name: Storage
+    description: Objects stored on the Indico platform
+security:
+  - bearerAuth: []
+paths:
+  /api/v1/auth/refreshToken:
+    post:
+      operationId: refresh_token
+      tags: [Authentication]
+      summary: Refresh Token
+      description: >-
+        Obtains a refreshed JWT access token using HTTP Basic Authentication with
+        your Indico API token. The returned access_token is used as the Bearer
+        token for all other endpoints and expires after 15 minutes.
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    description: JWT access token (expires after 15 minutes)
+        '401':
+          description: Unauthorized - missing or invalid credentials
+  /api/v1/datasets/{id}:
+    get:
+      operationId: get_dataset
+      tags: [Datasets]
+      summary: Get Dataset
+      description: Retrieve a dataset by ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200':
+          description: Successful Response
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /api/v1/workflows/{id}:
+    get:
+      operationId: get_workflow
+      tags: [Workflows]
+      summary: Get Workflow
+      description: Fetches a workflow with the given ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200':
+          description: Successful Response
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /api/v1/workflows/{id}/submissions/:
+    post:
+      operationId: submit_to_workflow
+      tags: [Workflows, Submissions]
+      summary: Submit To Workflow
+      description: >-
+        Creates a submission for a given workflow. Provide one or multiple files.
+        Use one of the /submissions endpoints to query for updates and results.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+          description: The workflow ID to receive the submission
+        - name: submission_results_version
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [LATEST, OLDEST_SUPPORTED, ONE, TWO, THREE]
+            default: LATEST
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [files]
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+      responses:
+        '200':
+          description: Successful Response - array of submission IDs
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { type: integer }
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /api/v1/submissions/:
+    get:
+      operationId: get_submissions
+      tags: [Submissions]
+      summary: Get Submissions
+      description: List submissions visible to the authenticated user, paginated by most recent.
+      parameters:
+        - { name: workflowId, in: query, schema: { type: array, items: { type: integer } }, description: Include submissions for any of these workflows }
+        - { name: submissionId, in: query, schema: { type: array, items: { type: integer } }, description: Include submissions with any of these ids }
+        - { name: inputFilename, in: query, schema: { type: string }, description: Only return submissions whose input files contain this substring }
+        - { name: status, in: query, schema: { type: array, items: { type: string } }, description: Return submissions currently in any of these statuses }
+        - { name: retrieved, in: query, schema: { type: boolean }, description: Return submissions that have or have not been retrieved }
+        - { name: orderBy, in: query, schema: { type: string }, description: Order results by this attribute }
+        - { name: limit, in: query, schema: { type: integer, default: 1000 }, description: Max number of submissions per page }
+        - { name: desc, in: query, schema: { type: boolean }, description: If true, return results in descending order }
+        - { name: after, in: query, schema: { type: integer }, description: Keyset cursor - show results this far down the list when paginating }
+      responses:
+        '200':
+          description: Successful Response - Page[Submission]
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /api/v1/submissions/{id}:
+    get:
+      operationId: get_submission
+      tags: [Submissions]
+      summary: Get Submission
+      description: Gets a specific submission given the ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200':
+          description: Successful Response
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /api/v1/submissions/{id}/result:
+    get:
+      operationId: get_submission_result
+      tags: [Submissions]
+      summary: Get Submission Result
+      description: Generate and retrieve the result file for a submission.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200':
+          description: Successful Response
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /api/v1/submissions/{id}/review:
+    post:
+      operationId: submit_review
+      tags: [Submissions]
+      summary: Submit Review
+      description: Submit review changes for a submission (enable/complete review).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200':
+          description: Successful Response
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /api/v1/submissions/{id}/retrieved:
+    put:
+      operationId: mark_submission_retrieved
+      tags: [Submissions]
+      summary: Mark Submission Retrieved
+      description: Update the retrieval status of a submission.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200':
+          description: Successful Response
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /api/v1/submissions/retry:
+    post:
+      operationId: retry_submission
+      tags: [Submissions]
+      summary: Retry Submission
+      description: >-
+        Retries processing for a list of failed submissions. Query parameter
+        submission_ids is the list of submission IDs to retry; returns the list
+        of retried submissions.
+      parameters:
+        - name: submission_ids
+          in: query
+          required: true
+          schema:
+            type: array
+            items: { type: integer }
+      responses:
+        '200':
+          description: Successful Response
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /api/v1/storage/{path}:
+    get:
+      operationId: storage_proxy
+      tags: [Storage]
+      summary: Storage Proxy
+      description: Convenience method that sits on top of the storage endpoint to retrieve an object stored on the Indico platform.
+      parameters:
+        - name: path
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Successful Response
+        '422':
+          $ref: '#/components/responses/ValidationError'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Short-lived JWT access token obtained from /api/v1/auth/refreshToken
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using your Indico API token, used only to obtain a JWT
+  responses:
+    ValidationError:
+      description: Validation Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
+  schemas:
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ValidationError:
+      type: object
+      properties:
+        loc:
+          type: array
+          items:
+            anyOf:
+              - { type: string }
+              - { type: integer }
+        msg: { type: string }
+        type: { type: string }
+      required: [loc, msg, type]

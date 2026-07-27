@@ -1,0 +1,19 @@
+generated: '2026-07-19'
+method: searched
+probe: false
+url: https://app.carbidesecure.com/trust/indico
+source: https://indicodata.ai/security/
+certifications:
+  - SOC 2 Type II
+security_practices:
+  - TLS 1.2+ encryption in transit
+  - AES-256 encryption at rest
+  - Annual third-party penetration testing
+  - Annually-tested business continuity / disaster recovery plan
+  - Quarterly backup restoration testing
+related:
+  security_architecture: https://indicodata.ai/architecture
+  data_processing_addendum: https://indicodata.ai/data-processing-addendum
+  privacy_policy: https://indicodata.ai/privacypolicy
+  eula: https://indicodata.ai/eula
+notes: SOC 2 Type II certified since 2021; controls updated 2026-02-01 per the trust center.

@@ -1,0 +1,22 @@
+{
+  "provider": "indico-data",
+  "sources": [
+    "indico-data-authentication-api-openapi.yml",
+    "indico-data-datasets-api-openapi.yml",
+    "indico-data-storage-api-openapi.yml",
+    "indico-data-submissions-api-openapi.yml",
+    "indico-data-workflows-api-openapi.yml"
+  ],
+  "outputs": [
+    "indico-data-authentication-api-openapi.yml",
+    "indico-data-datasets-api-openapi.yml",
+    "indico-data-storage-api-openapi.yml",
+    "indico-data-submissions-api-openapi.yml",
+    "indico-data-workflows-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

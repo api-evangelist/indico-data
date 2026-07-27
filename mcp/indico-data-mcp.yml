@@ -1,0 +1,40 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/indico-data-openapi.yml
+server:
+  name: indico-data
+  transport: http
+  url: null
+note: >-
+  No official hosted/remote Indico MCP server was found (docs, npm
+  @modelcontextprotocol, MCP registries). The tools below are a candidate surface
+  derived one-per-operation from the REST reference.
+tools:
+  - name: submit_to_workflow
+    description: Submit one or more files to an Indico workflow for processing.
+    source_operation: openapi/indico-data-openapi.yml#submit_to_workflow
+  - name: get_submission
+    description: Get a specific submission by ID.
+    source_operation: openapi/indico-data-openapi.yml#get_submission
+  - name: get_submissions
+    description: List/filter submissions visible to the authenticated user.
+    source_operation: openapi/indico-data-openapi.yml#get_submissions
+  - name: get_submission_result
+    description: Retrieve the JSON result file for a completed submission.
+    source_operation: openapi/indico-data-openapi.yml#get_submission_result
+  - name: submit_review
+    description: Submit review changes for a submission.
+    source_operation: openapi/indico-data-openapi.yml#submit_review
+  - name: mark_submission_retrieved
+    description: Mark a submission's results as retrieved.
+    source_operation: openapi/indico-data-openapi.yml#mark_submission_retrieved
+  - name: retry_submission
+    description: Retry processing for a list of failed submissions.
+    source_operation: openapi/indico-data-openapi.yml#retry_submission
+  - name: get_workflow
+    description: Fetch a workflow by ID.
+    source_operation: openapi/indico-data-openapi.yml#get_workflow
+  - name: get_dataset
+    description: Retrieve a dataset by ID.
+    source_operation: openapi/indico-data-openapi.yml#get_dataset

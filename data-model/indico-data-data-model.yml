@@ -1,0 +1,53 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/indico-data-openapi.yml
+entities:
+  - name: Dataset
+    description: Labeled data that backs models and workflows.
+    id: integer
+  - name: Workflow
+    description: A configured document-processing pipeline that receives submissions.
+    id: integer
+  - name: Submission
+    description: One or more files submitted to a workflow, tracked through processing and review.
+    id: integer
+    fields: [status, retrieved, inputFilename]
+  - name: SubmissionResult
+    description: The JSON output file generated for a submission (versioned ONE/TWO/THREE/LATEST).
+  - name: ModelGroup
+    description: A group of trained models within a dataset (GraphQL surface).
+  - name: Model
+    description: A single trained model version.
+  - name: Job
+    description: An async processing job with a status lifecycle.
+    fields: [status]
+  - name: StorageObject
+    description: A blob/object stored on the Indico platform, fetched via the storage proxy.
+relationships:
+  - from: Workflow
+    to: Submission
+    type: has_many
+    via: workflowId
+  - from: Submission
+    to: Workflow
+    type: belongs_to
+    via: workflowId
+  - from: Submission
+    to: SubmissionResult
+    type: has_one
+    via: submission_result
+  - from: Workflow
+    to: Dataset
+    type: belongs_to
+    via: dataset
+  - from: Dataset
+    to: ModelGroup
+    type: has_many
+    via: modelGroups
+  - from: ModelGroup
+    to: Model
+    type: has_many
+    via: models
+enums:
+  SubmissionStatus: [PROCESSING, PENDING_REVIEW, PENDING_AUTO_REVIEW, PENDING_ADMIN_REVIEW, COMPLETE, FAILED]
+  JobStatus: [PENDING, RECEIVED, STARTED, SUCCESS, FAILURE, RETRY, REVOKED, IGNORED, REJECTED]

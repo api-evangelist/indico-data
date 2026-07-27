@@ -1,0 +1,49 @@
+generated: '2026-07-19'
+method: searched
+source: https://developer.indicodata.ai/docs/getting-started
+packages:
+  - language: python
+    registry: pypi
+    name: indico-client
+    url: https://pypi.org/project/indico-client/
+    install: pip install indico-client
+    version: 7.10.0
+    license: MIT License
+    repo: https://github.com/IndicoDataSolutions/indico-client-python
+    docs: https://indicodatasolutions.github.io/indico-client-python/
+    official: true
+    notes: Primary first-party Python client (requires Python 3.8+).
+  - language: python
+    registry: pypi
+    name: indico-toolkit
+    url: https://pypi.org/project/indico-toolkit/
+    install: pip install indico-toolkit
+    version: 7.2.3
+    repo: https://github.com/IndicoDataSolutions/indico-toolkit
+    official: true
+    notes: First-party classes, functions, and abstractions built on top of indico-client.
+  - language: csharp
+    registry: nuget
+    name: IndicoClient
+    url: https://www.nuget.org/packages/IndicoClient
+    install: dotnet add package IndicoClient
+    repo: https://github.com/IndicoDataSolutions/indico-client-csharp
+    official: true
+    notes: First-party C#/.NET client.
+  - language: java
+    registry: maven
+    name: com.indico:indico-client-java
+    url: https://central.sonatype.com/artifact/com.indico/indico-client-java
+    install: "implementation 'com.indico:indico-client-java:5.1.0'"
+    version: 5.1.0
+    repo: https://github.com/IndicoDataSolutions/indico-client-java
+    official: true
+    deprecated: true
+    notes: First-party Java client; marked deprecated in the Indico docs.
+  - language: javascript
+    registry: github
+    name: IndicoIo-node
+    url: https://github.com/IndicoDataSolutions/IndicoIo-node
+    official: true
+    archived: true
+    notes: Legacy Node.js wrapper for the original indico.io ML API; archived.

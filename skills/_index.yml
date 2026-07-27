@@ -1,0 +1,12 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/indico-data-openapi.yml
+skills:
+  - file: indico-data-submit-and-retrieve.md
+    name: Submit a document and retrieve results
+    api: openapi/indico-data-openapi.yml
+    operations: [refresh_token, submit_to_workflow, get_submission, get_submission_result, mark_submission_retrieved]
+  - file: indico-data-review-and-retry.md
+    name: List, review, and retry submissions
+    api: openapi/indico-data-openapi.yml
+    operations: [refresh_token, get_submissions, submit_review, retry_submission]

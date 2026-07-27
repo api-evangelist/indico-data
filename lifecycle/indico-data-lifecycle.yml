@@ -1,0 +1,21 @@
+generated: '2026-07-19'
+method: searched
+source: https://developer.indicodata.ai/docs/getting-started
+versioning:
+  scheme: uri-path
+  current: v1
+  base_path: /restapi/api/v1
+  product_line: Indico IPA / Agents & Workflows platform (self-hosted or hosted cluster, versioned separately, e.g. IPA v4.x)
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecated_clients:
+    - com.indico:indico-client-java (Java SDK marked deprecated)
+    - IndicoIo-node (legacy indico.io Node wrapper, archived)
+  notes: No formal API deprecation/Sunset-header policy is published; deprecation is signaled at the SDK level.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+release_notes: https://indicodata.ai/blog/tag/release-notes/
+deprecated_operations: []

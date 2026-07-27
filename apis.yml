@@ -1,7 +1,17 @@
 aid: indico-data
 name: Indico Data
-description: Indico Data is a company surfaced as a portfolio company of techstars and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Indico Data is an enterprise intelligent document processing (IDP) and
+  intelligent process automation (IPA) company that turns unstructured content —
+  documents, emails, images, and free text — into structured, usable data. Its
+  Agents & Workflows platform lets teams build extraction and classification
+  models from as few as ~200 sample documents (no rules or templates) and deploy
+  them as document-processing pipelines. Developers integrate via a REST API and
+  a companion GraphQL API, authenticating with an API token exchanged for a
+  short-lived JWT, and via first-party Python, C#, and Java client libraries. The
+  platform is commonly deployed on a dedicated per-customer cluster and is used to
+  automate high-volume unstructured-data workflows across insurance, financial
+  services, and other document-heavy industries.
 url: https://raw.githubusercontent.com/api-evangelist/indico-data/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,12 +19,132 @@ x-backed-by:
 - techstars
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
+image: https://indicodata.ai/wp-content/uploads/2023/01/indico-data-logo.png
 tags:
 - Company
-apis: []
+- Intelligent Document Processing
+- Intelligent Process Automation
+- Document AI
+- Machine Learning
+- Unstructured Data
+- Data Extraction
+- Insurance
+apis:
+- aid: indico-data:indico-data-authentication-api
+  name: Indico Data Authentication API
+  description: Exchange an API token for a short-lived JWT access token
+  humanURL: https://developer.indicodata.ai/
+  baseURL: https://app.indico.io/restapi
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/indico-data-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://developer.indicodata.ai/docs/getting-started
+  - type: APIReference
+    url: https://developer.indicodata.ai/reference
+  - type: Authentication
+    url: authentication/indico-data-authentication.yml
+  - type: ErrorCatalog
+    url: errors/indico-data-problem-types.yml
+  - type: DataModel
+    url: data-model/indico-data-data-model.yml
+- aid: indico-data:indico-data-datasets-api
+  name: Indico Data Datasets API
+  description: Datasets that back workflows and models
+  humanURL: https://developer.indicodata.ai/
+  baseURL: https://app.indico.io/restapi
+  tags:
+  - Datasets
+  properties:
+  - type: OpenAPI
+    url: openapi/indico-data-datasets-api-openapi.yml
+  - type: Documentation
+    url: https://developer.indicodata.ai/docs/getting-started
+  - type: APIReference
+    url: https://developer.indicodata.ai/reference
+  - type: Authentication
+    url: authentication/indico-data-authentication.yml
+  - type: ErrorCatalog
+    url: errors/indico-data-problem-types.yml
+  - type: DataModel
+    url: data-model/indico-data-data-model.yml
+- aid: indico-data:indico-data-storage-api
+  name: Indico Data Storage API
+  description: Objects stored on the Indico platform
+  humanURL: https://developer.indicodata.ai/
+  baseURL: https://app.indico.io/restapi
+  tags:
+  - Storage
+  properties:
+  - type: OpenAPI
+    url: openapi/indico-data-storage-api-openapi.yml
+  - type: Documentation
+    url: https://developer.indicodata.ai/docs/getting-started
+  - type: APIReference
+    url: https://developer.indicodata.ai/reference
+  - type: Authentication
+    url: authentication/indico-data-authentication.yml
+  - type: ErrorCatalog
+    url: errors/indico-data-problem-types.yml
+  - type: DataModel
+    url: data-model/indico-data-data-model.yml
+- aid: indico-data:indico-data-submissions-api
+  name: Indico Data Submissions API
+  description: Documents submitted to a workflow and their results
+  humanURL: https://developer.indicodata.ai/
+  baseURL: https://app.indico.io/restapi
+  tags:
+  - Submissions
+  properties:
+  - type: OpenAPI
+    url: openapi/indico-data-submissions-api-openapi.yml
+  - type: Documentation
+    url: https://developer.indicodata.ai/docs/getting-started
+  - type: APIReference
+    url: https://developer.indicodata.ai/reference
+  - type: Authentication
+    url: authentication/indico-data-authentication.yml
+  - type: ErrorCatalog
+    url: errors/indico-data-problem-types.yml
+  - type: DataModel
+    url: data-model/indico-data-data-model.yml
+- aid: indico-data:indico-data-workflows-api
+  name: Indico Data Workflows API
+  description: Document processing workflows
+  humanURL: https://developer.indicodata.ai/
+  baseURL: https://app.indico.io/restapi
+  tags:
+  - Workflows
+  properties:
+  - type: OpenAPI
+    url: openapi/indico-data-workflows-api-openapi.yml
+  - type: Documentation
+    url: https://developer.indicodata.ai/docs/getting-started
+  - type: APIReference
+    url: https://developer.indicodata.ai/reference
+  - type: Authentication
+    url: authentication/indico-data-authentication.yml
+  - type: ErrorCatalog
+    url: errors/indico-data-problem-types.yml
+  - type: DataModel
+    url: data-model/indico-data-data-model.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -22,4 +152,55 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://indico.io/
+  url: https://indicodata.ai/
+- type: DeveloperPortal
+  url: https://developer.indicodata.ai/
+- type: Documentation
+  url: https://developer.indicodata.ai/docs/getting-started
+- type: APIReference
+  url: https://developer.indicodata.ai/reference
+- type: GettingStarted
+  url: https://developer.indicodata.ai/docs/getting-started
+- type: HelpCenter
+  url: https://docs.indicodata.ai/
+- type: Blog
+  url: https://indicodata.ai/blog/
+- type: GitHubOrganization
+  url: https://github.com/IndicoDataSolutions
+- type: Login
+  url: https://app.indico.io/
+- type: TermsOfService
+  url: https://indicodata.ai/eula
+- type: PrivacyPolicy
+  url: https://indicodata.ai/privacypolicy
+- type: TrustCenter
+  url: https://app.carbidesecure.com/trust/indico
+- type: Compliance
+  url: https://app.carbidesecure.com/trust/indico
+- type: ChangeLog
+  url: changelog/indico-data-changelog.yml
+- type: Authentication
+  url: authentication/indico-data-authentication.yml
+- type: Conventions
+  url: conventions/indico-data-conventions.yml
+- type: Conformance
+  url: conformance/indico-data-conformance.yml
+- type: Lifecycle
+  url: lifecycle/indico-data-lifecycle.yml
+- type: Packages
+  url: packages/indico-data-packages.yml
+- type: SDKs
+  url: packages/indico-data-packages.yml
+- type: LLMsTxt
+  url: llms/indico-data-llms.txt
+- type: MCPServer
+  url: mcp/indico-data-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DomainSecurity
+  url: security/indico-data-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

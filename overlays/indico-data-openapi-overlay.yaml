@@ -1,0 +1,25 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Indico REST API
+  version: 1.0.0
+extends: openapi/indico-data-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-category: document-ai
+      x-apievangelist-notes: >-
+        Intelligent document processing / IPA platform. Two-step auth (Basic ->
+        JWT), keyset-paginated submissions, FastAPI validation errors, GraphQL
+        companion API. Deployed per-customer; default hosted host app.indico.io.
+  - target: $.info
+    update:
+      x-agent-ready-summary:
+        auth: JWT bearer via Basic token exchange (15 min TTL)
+        pagination: keyset (after + limit)
+        idempotency: not supported
+        events: none (polling model)
+        errors: fastapi-validation (detail[])
+  - target: "$.tags"
+    update:
+      - name: Authentication
+        x-apievangelist: JWT token-exchange endpoint

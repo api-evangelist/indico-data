@@ -1,0 +1,34 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/indico-data-openapi.yml
+format: fastapi-validation
+envelope:
+  field: detail
+  shape: '{ "detail": [ { "loc": ["body","field"], "msg": "...", "type": "..." } ] }'
+  note: >-
+    Indico's REST API is FastAPI-based; validation failures return HTTP 422 with a
+    `detail[]` array (RFC 9457 problem+json is NOT used). Auth failures return 401.
+problems:
+  - status: 401
+    title: Unauthorized
+    description: Missing or invalid credentials / expired JWT.
+    source_operation: openapi/indico-data-openapi.yml#refresh_token
+  - status: 422
+    title: Validation Error
+    description: Invalid request parameters, missing required fields, or malformed body.
+    schema: HTTPValidationError (detail[] of {loc,msg,type})
+    source_operations:
+      - openapi/indico-data-openapi.yml#submit_to_workflow
+      - openapi/indico-data-openapi.yml#get_submissions
+      - openapi/indico-data-openapi.yml#get_submission
+      - openapi/indico-data-openapi.yml#retry_submission
+sdk_exceptions:
+  source: https://developer.indicodata.ai/docs/indico-base-exception
+  note: The client SDKs raise a typed exception hierarchy for API/network failures.
+  types:
+    - IndicoBaseException
+    - IndicoAuthorizationException
+    - IndicoInvalidRequestException
+    - IndicoMutationException
+    - IndicoNetworkException
+    - IndicoQueryException

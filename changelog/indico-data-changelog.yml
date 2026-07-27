@@ -1,0 +1,23 @@
+generated: '2026-07-19'
+method: searched
+source: https://indicodata.ai/blog/tag/release-notes/
+scheme: product-release-notes
+notes: >-
+  Indico publishes dated "Release Notes - Indico IPA vX.Y" posts on its blog
+  rather than an API-level changelog. The REST API itself is versioned at /api/v1.
+  Entries below are the recent release-notes posts discovered; consult the blog
+  tag for authoritative dates and full detail.
+entries:
+  - version: IPA v4.15
+    url: https://indicodata.ai/blog/release-notes-indico-ipa-v4-15/
+    highlights: New Gallery module, ACORD form workflows, review-queue fixes.
+  - version: IPA v4.10
+    url: https://indico.io/blog/release-notes-indico-ipa-v4-10/
+  - version: IPA v4.9
+    url: https://indicodata.ai/blog/release-notes-indico-ipa-v4-9/
+  - version: IPA v4.5
+    url: https://indicodata.ai/blog/release-notes-indico-ipa-v4-5/
+  - version: IPA v4.4
+    url: https://indicodata.ai/blog/release-notes-indico-ipa-v4-4/
+  - version: IPA v4.3
+    url: https://indicodata.ai/blog/release-notes-indico-ipa-v4-3/

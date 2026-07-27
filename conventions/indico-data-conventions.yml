@@ -1,0 +1,46 @@
+generated: '2026-07-19'
+method: searched
+source: https://developer.indicodata.ai/reference
+authentication:
+  style: JWT bearer token (obtained via HTTP Basic token exchange)
+  header: "Authorization: Bearer <jwt>"
+  token_endpoint: /api/v1/auth/refreshToken
+  token_lifetime: 15 minutes
+  ref: authentication/indico-data-authentication.yml
+idempotency:
+  supported: false
+  notes: >-
+    No idempotency-key header or parameter is documented. Submission processing
+    is asynchronous and identified by server-assigned submission IDs; retries are
+    performed explicitly via the retry_submission operation against known IDs.
+pagination:
+  style: keyset (cursor)
+  operation: get_submissions
+  params:
+    limit: Max number of results per page (default 1000)
+    after: Keyset cursor - show results this far down the list
+    desc: Return results in descending order
+    orderBy: Attribute to order results by
+  response_field: Page[Submission]
+  notes: Submissions are listed by most recent; keyset pagination via `after`.
+filtering:
+  operation: get_submissions
+  params: [workflowId, submissionId, inputFilename, status, retrieved]
+versioning:
+  scheme: uri-path
+  current: v1
+  base_path: /restapi/api/v1
+  ref: lifecycle/indico-data-lifecycle.yml
+error_envelope:
+  format: fastapi-validation
+  shape: '{ "detail": [ { "loc": [...], "msg": "...", "type": "..." } ] }'
+  status_codes: [401, 422]
+  ref: errors/indico-data-problem-types.yml
+rate_limiting:
+  documented: false
+  notes: No rate-limit headers or quotas are documented in the public reference.
+async_processing:
+  model: >-
+    Submit files to a workflow, then poll submission status (PENDING -> PROCESSING
+    -> PENDING_REVIEW/COMPLETE/FAILED) via get_submission / get_submissions before
+    retrieving results. No webhooks/event push surface is documented.

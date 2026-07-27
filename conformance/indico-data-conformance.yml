@@ -1,0 +1,26 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/indico-data-openapi.yml
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: Auth is HTTP Basic token-exchange to a JWT bearer, not an OAuth2 authorization flow.
+  - id: jwt
+    conforms: true
+    evidence: refreshToken returns a JWT access_token used as the Bearer credential.
+  - id: graphql
+    conforms: true
+    evidence: A GraphQL API is served at /graph/api/graphql alongside the REST API.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use FastAPI validation envelope (detail[]), not application/problem+json.
+  - id: openapi
+    conforms: true
+    evidence: REST reference is OpenAPI-backed (captured in openapi/indico-data-openapi.yml).
+  - id: soc2-type2
+    conforms: true
+    evidence: SOC 2 Type II certified since 2021 (Carbide Secure trust center).
+compliance_program:
+  soc2_type2: true
+  trust_center: https://app.carbidesecure.com/trust/indico
+  details: TLS 1.2+ in transit, AES-256 at rest, annual third-party penetration testing.

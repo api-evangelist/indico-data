@@ -1,0 +1,215 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Indico REST Authentication Submissions API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Submissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit To Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.indico.io/restapi/api/v1/workflows/:id/submissions/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The workflow ID to receive the submission"
+              },
+              {
+                "name": "submission_results_version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "files",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Creates a submission for a given workflow. Provide one or multiple files. Use one of the /submissions endpoints to query for updates and results."
+        },
+        {
+          "info": {
+            "name": "Get Submissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.indico.io/restapi/api/v1/submissions/",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "query",
+                "description": "Include submissions for any of these workflows"
+              },
+              {
+                "name": "submissionId",
+                "value": "",
+                "type": "query",
+                "description": "Include submissions with any of these ids"
+              },
+              {
+                "name": "inputFilename",
+                "value": "",
+                "type": "query",
+                "description": "Only return submissions whose input files contain this substring"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Return submissions currently in any of these statuses"
+              },
+              {
+                "name": "retrieved",
+                "value": "",
+                "type": "query",
+                "description": "Return submissions that have or have not been retrieved"
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Order results by this attribute"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of submissions per page"
+              },
+              {
+                "name": "desc",
+                "value": "",
+                "type": "query",
+                "description": "If true"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Keyset cursor - show results this far down the list when paginating"
+              }
+            ]
+          },
+          "docs": "List submissions visible to the authenticated user, paginated by most recent."
+        },
+        {
+          "info": {
+            "name": "Get Submission",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.indico.io/restapi/api/v1/submissions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a specific submission given the ID."
+        },
+        {
+          "info": {
+            "name": "Get Submission Result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.indico.io/restapi/api/v1/submissions/:id/result",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Generate and retrieve the result file for a submission."
+        },
+        {
+          "info": {
+            "name": "Submit Review",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.indico.io/restapi/api/v1/submissions/:id/review",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Submit review changes for a submission (enable/complete review)."
+        },
+        {
+          "info": {
+            "name": "Mark Submission Retrieved",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.indico.io/restapi/api/v1/submissions/:id/retrieved",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update the retrieval status of a submission."
+        },
+        {
+          "info": {
+            "name": "Retry Submission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.indico.io/restapi/api/v1/submissions/retry",
+            "params": [
+              {
+                "name": "submission_ids",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retries processing for a list of failed submissions. Query parameter submission_ids is the list of submission IDs to retry; returns the list of retried submissions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

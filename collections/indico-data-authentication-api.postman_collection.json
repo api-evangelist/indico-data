@@ -1,0 +1,179 @@
+{
+  "item": [
+    {
+      "id": "40070243-1139-4ce6-adef-65f040ae625a",
+      "name": "Authentication",
+      "description": {
+        "content": "Exchange an API token for a short-lived JWT access token",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3d37a452-406b-4972-8601-76a6e48da308",
+          "name": "Refresh Token",
+          "request": {
+            "name": "Refresh Token",
+            "description": {
+              "content": "Obtains a refreshed JWT access token using HTTP Basic Authentication with your Indico API token. The returned access_token is used as the Bearer token for all other endpoints and expires after 15 minutes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "refreshToken"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1a7b2e33-7ec0-4378-b544-b9d4fca30599",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "refreshToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f18b0da2-5053-4ccd-9f9d-a1d1db6e0c41",
+              "name": "Unauthorized - missing or invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "refreshToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.indico.io/restapi",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f1136182-5382-49ca-b228-f250836ca8a3",
+    "name": "Indico REST Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Indico intelligent document processing / intelligent process automation (IPA) platform. Submit documents to workflows, poll for submission status, retrieve extraction results, and manage review. Captured faithfully from the published Indico developer reference; request/response schemas are modeled from the documented parameters and responses. The platform is typically deployed per-customer on a dedicated cluster; the default hosted cluster host is app.indico.io and the REST API is served under the /restapi base path.\n\nContact Support:\n Name: Indico Data Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

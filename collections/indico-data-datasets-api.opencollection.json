@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Indico REST Authentication Datasets API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Datasets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.indico.io/restapi/api/v1/datasets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a dataset by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Indico REST Authentication Storage API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Storage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Storage Proxy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.indico.io/restapi/api/v1/storage/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Convenience method that sits on top of the storage endpoint to retrieve an object stored on the Indico platform."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

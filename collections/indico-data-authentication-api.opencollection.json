@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Indico REST Authentication API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Refresh Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.indico.io/restapi/api/v1/auth/refreshToken",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Obtains a refreshed JWT access token using HTTP Basic Authentication with your Indico API token. The returned access_token is used as the Bearer token for all other endpoints and expires after 15 minutes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

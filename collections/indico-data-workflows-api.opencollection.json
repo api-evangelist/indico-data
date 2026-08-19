@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Indico REST Authentication Workflows API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.indico.io/restapi/api/v1/workflows/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Fetches a workflow with the given ID."
+        },
+        {
+          "info": {
+            "name": "Submit To Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.indico.io/restapi/api/v1/workflows/:id/submissions/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The workflow ID to receive the submission"
+              },
+              {
+                "name": "submission_results_version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "files",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Creates a submission for a given workflow. Provide one or multiple files. Use one of the /submissions endpoints to query for updates and results."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

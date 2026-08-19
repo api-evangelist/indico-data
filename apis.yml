@@ -31,7 +31,7 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-19'
 image: https://indicodata.ai/wp-content/uploads/2023/01/indico-data-logo.png

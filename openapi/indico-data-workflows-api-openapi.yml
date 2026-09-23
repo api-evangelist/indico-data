@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Indico REST Authentication Workflows API
-  description: REST API for the Indico intelligent document processing / intelligent process automation (IPA) platform. Submit documents to workflows, poll for submission status, retrieve extraction results, and manage review. Captured faithfully from the published Indico developer reference; request/response schemas are modeled from the documented parameters and responses. The platform is typically deployed per-customer on a dedicated cluster; the default hosted cluster host is app.indico.io and the REST API is served under the /restapi base path.
+  title: Indico REST Workflows API
+  description: REST API for the Indico intelligent document processing / intelligent process automation (IPA) platform.
   version: v1
   x-apis-json-method: generated
   x-apis-json-source: https://developer.indicodata.ai/reference
@@ -87,13 +87,6 @@ paths:
         '422':
           $ref: '#/components/responses/ValidationError'
 components:
-  responses:
-    ValidationError:
-      description: Validation Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPValidationError'
   schemas:
     HTTPValidationError:
       type: object
@@ -119,6 +112,13 @@ components:
       - loc
       - msg
       - type
+  responses:
+    ValidationError:
+      description: Validation Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
   securitySchemes:
     bearerAuth:
       type: http

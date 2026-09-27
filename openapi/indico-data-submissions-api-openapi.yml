@@ -228,13 +228,6 @@ paths:
           $ref: '#/components/responses/ValidationError'
 components:
   schemas:
-    HTTPValidationError:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
     ValidationError:
       type: object
       properties:
@@ -252,6 +245,13 @@ components:
       - loc
       - msg
       - type
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
   responses:
     ValidationError:
       description: Validation Error

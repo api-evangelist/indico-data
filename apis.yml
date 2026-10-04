@@ -48,6 +48,9 @@ specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-19'
 image: https://indicodata.ai/wp-content/uploads/2023/01/indico-data-logo.png
+x-docs-platform: readme
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-10-03
 tags:
 - Company
 - Intelligent Document Processing

@@ -177,6 +177,10 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Pricing
+  url: https://indicodata.ai/
+- type: Plans
+  url: plans/indico-data-plans-pricing.yml
 - type: Overlay
   url: overlays/indico-data-openapi-overlay.yaml
 - type: Website

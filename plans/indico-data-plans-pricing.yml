@@ -1,0 +1,22 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://indicodata.ai/
+sources:
+- https://indicodata.ai/
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T112025
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: negotiated
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-07'
+published: false
+note: No numeric price is published on the pricing page; Homepage for Indico's insurance intake/orchestration
+  platform; no pricing shown, only 'Schedule demo' calls to action. Percentages cited are performance
+  metrics, not prices.
+plan_count: 0
+plans: []

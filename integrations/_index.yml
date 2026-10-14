@@ -15,3 +15,16 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
+- slug: indico-data-guidewire-own
+  label: Guidewire (own)
+  partner: guidewire
+  partner_name: Guidewire (own)
+  category: Accelerator; Claim Intake;Claims Automation; ClaimCenter
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.guidewire.com/product/01tKj00000PwfvhIAB/01tKj00000PwfvhIAB
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null

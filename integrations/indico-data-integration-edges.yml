@@ -3,6 +3,7 @@ method: searched
 checked:
 - guidewire/integrations/guidewire-integration-edges.yml
 - https://azuremarketplace.microsoft.com/
+- blue-prism/integrations/blue-prism-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: Microsoft Azure Marketplace
@@ -42,5 +43,22 @@ edges:
   badges:
   - Ready for Guidewire
   - 'Partner tier: Growth'
+- partner_name: Blue Prism (blue-prism-digital-exchange)
+  partner: blue-prism
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: blue-prism-digital-exchange
+  evidence: https://digitalexchange.blueprism.com/dx/entry/116029
+  mirror_of: blue-prism/integrations/blue-prism-integration-edges.yml
+  apps:
+  - Indico Custom Actions for Blue Prism
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: RPA marketplace listing
 source:
 - guidewire/integrations/guidewire-integration-edges.yml

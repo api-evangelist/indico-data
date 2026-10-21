@@ -28,3 +28,16 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: indico-data-blue-prism-blue-prism-digital-exchange
+  label: Blue Prism (blue-prism-digital-exchange)
+  partner: blue-prism
+  partner_name: Blue Prism (blue-prism-digital-exchange)
+  category: RPA marketplace listing
+  type: marketplace
+  marketplace: blue-prism-digital-exchange
+  channel: partner-built
+  evidence: https://digitalexchange.blueprism.com/dx/entry/116029
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null

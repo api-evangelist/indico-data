@@ -64,6 +64,129 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Indico Data is a company surfaced as a portfolio company of techstars and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Indico Data is an enterprise intelligent document processing (IDP) and intelligent process automation (IPA) company that turns unstructured content — documents, emails, images, and free text — into structured, usable data. Its Agents & Workflows platform lets teams build extraction and classification models from as few as ~200 sample documents (no rules or templates) and deploy them as document-processing pipelines. Developers integrate via a REST API and a companion GraphQL API, authenticating with an API token exchanged for a short-lived JWT, and via first-party Python, C#, and Java client libraries. The platform is commonly deployed on a dedicated per-customer cluster and is used to automate high-volume unstructured-data workflows across insurance, financial services, and other document-heavy industries.
 
-Backed by: techstars — https://indico.io/
+**Areas:** Company · Intelligent Document Processing · Intelligent Process Automation · Document AI · Machine Learning · Unstructured Data · Data Extraction · Insurance
+
+## Indico Data on APIs.io
+
+Everything profiled for Indico Data is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/indico-data/](https://apis.io/providers/indico-data/)** — or go straight to one of the APIs or properties below.
+
+### APIs (5)
+
+- [Indico Data Authentication API](https://apis.io/apis/indico-data/indico-data-authentication-api/) — Exchange an API token for a short-lived JWT access token
+- [Indico Data Datasets API](https://apis.io/apis/indico-data/indico-data-datasets-api/) — Datasets that back workflows and models
+- [Indico Data Storage API](https://apis.io/apis/indico-data/indico-data-storage-api/) — Objects stored on the Indico platform
+- [Indico Data Submissions API](https://apis.io/apis/indico-data/indico-data-submissions-api/) — Documents submitted to a workflow and their results
+- [Indico Data Workflows API](https://apis.io/apis/indico-data/indico-data-workflows-api/) — Document processing workflows
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [indico-data](https://apis.io/servers/indico-data/indico-data/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [Indico REST Authentication API](https://apis.io/collections/indico-data/open-indico-data-authentication-api/)
+- [Indico REST Authentication Datasets API](https://apis.io/collections/indico-data/open-indico-data-datasets-api/)
+- [Indico REST Authentication Storage API](https://apis.io/collections/indico-data/open-indico-data-storage-api/)
+- [Indico REST Authentication Submissions API](https://apis.io/collections/indico-data/open-indico-data-submissions-api/)
+- [Indico REST Authentication Workflows API](https://apis.io/collections/indico-data/open-indico-data-workflows-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Indico Data Openapi Overlay](https://apis.io/overlays/indico-data/indico-data-openapi-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Indico Data Authentication](https://apis.io/security/indico-data/indico-data-authentication/)
+- [Indico Data Domain Security](https://apis.io/security/indico-data/indico-data-domain-security/)
+- [Indico Data Trust Center](https://apis.io/security/indico-data/indico-data-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Indico Data Plans Pricing](https://apis.io/plans/indico-data/indico-data-plans-pricing/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://indicodata.ai/)
+- [Documentation](https://developer.indicodata.ai/docs/getting-started)
+- [Getting started](https://developer.indicodata.ai/docs/getting-started)
+- [API reference](https://developer.indicodata.ai/reference)
+- [Pricing](https://indicodata.ai/)
+- [Blog](https://indicodata.ai/blog/)
+- [Compliance](https://app.carbidesecure.com/trust/indico)
+- [Trust centre](https://app.carbidesecure.com/trust/indico)
+- [Terms of service](https://indicodata.ai/eula)
+- [Privacy policy](https://indicodata.ai/privacypolicy)
+- [GitHub](https://github.com/IndicoDataSolutions)
+
+## API Evangelist rating
+
+**Kin Score 42.1** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 48.4 |
+| Contract governance | 4.5 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 42.3 |
+| Access clarity | 53.9 |
+
+**Agent readiness 18.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 24.6** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/indico-data/](https://apis.io/providers/indico-data/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Indico Data: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/indico-data/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
